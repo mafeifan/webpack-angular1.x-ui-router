@@ -1,13 +1,16 @@
-let page4Controller = function(){
+let page4Controller = function(page4Service){
     let vm = this;
-    vm.title = 'This is page 4';
 
-    vm.pets = [
-        {name: 'Ellie'},
-        {name: 'Mr. Fish'},
-        {name: 'Stella'},
-        {name: 'Stuby'}
-    ];
+
+    page4Service.test().then(res => {
+        vm.title = res.data.email;
+        vm.pets = [
+            {name: 'Ellie'},
+            {name: 'Mr. Fish'},
+            {name: 'Stella'},
+            {name: 'Stuby'}
+        ];
+    })
 };
 
 export default ngModule => {
