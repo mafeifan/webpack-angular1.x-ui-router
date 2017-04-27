@@ -1,0 +1,82 @@
+<div class="block-item grid-block" layout-id="{{ widget.widgetData.LayoutId }}">
+    <h4 class="widget-name">
+        Signature
+        <span class="required" ng-if="widget.asterisk()">*</span>
+    </h4>
+    <div class="block-tools" ng-if="!widget.previewMode && !hideTools">
+        <div class="vertical-tools">
+            <button class="btn btn-link delete-btn" title="Remove Widget"
+                    ng-click="widget.remove($event)">
+                <md-icon md-svg-src="actions:delete"></md-icon>
+            </button>
+            <button class="btn btn-link config-btn" title="Widget Properties"
+                    ng-click="widget.updateProperty($event)">
+                <md-icon md-svg-src="actions:settings"></md-icon>
+            </button>
+            <button class="btn btn-link up-btn" title="Move up"
+                    ng-class="{'disabled': widget.isTopElement()}"
+                    ng-click="widget.moveUpWidget($event)">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </button>
+
+            <button class="btn btn-link down-btn" title="Move down"
+                    ng-class="{'disabled': widget.isBottomElement()}" ng-click="widget.moveDownWidget($event)">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </button>
+        </div>
+    </div>
+    <div class="signatureContainer">
+        <div class="signature" style="width: 100%; height: 100%; max-height:{{widget.height}}px;" layout="row"
+             layout-align="space-between center">
+            <canvas class="canvas"
+                    ng-class="{ 'invalidSignature': widget.invalidSignature }"
+                    ng-mouseup="widget.onMouseup()"
+                    ng-show="!widget.isSignaturing">
+            </canvas>
+        </div>
+        <div class="text-center">
+            <label class="requireSignature" ng-show="widget.invalidSignature">Please Sign Your Name.</label>
+            <label class="requiredNameOrDate" ng-show="widget.requiredNameOrDate">Please Fill In Your Name.</label>
+        </div>
+        <div class="result" ng-show="widget.isSignaturing" layout="row" layout-align="space-around start">
+            <img class="signatureImg" ng-src="{{ dataUrl }}" >
+        </div>
+        <div class="text-center">
+            <div class="resignBtn" ng-show="widget.isSignaturing">
+                <label>{{widget.widgetData.SignatureName}}</label>
+                <button class="btn btn-warning resignSignatureBtn" ng-click="widget.clear();" ng-disabled="widget.signatureReadOnly">
+                    <md-icon class="instanceClearIcon instanceIcon" md-svg-src="editor:border_color"></md-icon>
+                    Resign
+                </button>
+
+            </div>
+            <div class="buttons" ng-class="{ 'is-inline': widget.isSignaturing }">
+
+                <span ng-show="!widget.isSignaturing">
+                        <label>Name:</label>
+                        <input type="text" ng-model="widget.widgetData.SignatureName">
+                    <md-datepicker ng-model="widget.widgetData.SignatureDate"
+                                   ng-disabled="widget.signatureReadOnly">
+                    </md-datepicker>
+                    <button class="btn btn-danger instanceCancelBtn "
+                            ng-click="widget.cancel()"
+                            ng-disabled="widget.isSignaturing">
+                        <md-icon class="instanceCancelIcon instanceIcon" md-svg-src="actions:highlight_off"></md-icon>
+                        Cancel
+                    </button>
+                    <button class="btn btn-warning clearSignatureBtn" ng-click="widget.clear()"
+                            ng-disabled="widget.signatureReadOnly"
+                            ng-show="!widget.isSignaturing">
+                        <md-icon class="instanceClearIcon instanceIcon" md-svg-src="content:remove_circle_outline"></md-icon>
+                        Clear
+                    </button>
+                    <button class="btn btn-success saveSignatureBtn" ng-click="widget.accept()" ng-show="!widget.isSignaturing"
+                            ng-disabled="widget.signatureReadOnly">
+                        <md-icon class="instanceSaveIcon instanceIcon" md-svg-src="content:save"></md-icon>
+                        Save
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

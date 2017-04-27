@@ -1,0 +1,23 @@
+<md-dialog aria-label="Form Preview" class="dialogContainer" style="min-width: 50%;">
+    <form class="formPreview" name="previewForm" ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Form Preview</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="flex" layout="row" layout-align="space-around center">
+                <h4 class="loading text-center">Loading...</h4>
+                <div class="previewArea"></div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised"
+                       ng-click="Cancel()">
+                Ok
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

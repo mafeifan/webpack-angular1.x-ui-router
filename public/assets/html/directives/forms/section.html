@@ -1,0 +1,37 @@
+<div class="block-item section-block" position="{{ section.positionAttr }}"
+     ng-show="section.liveProperties.IsVisible || !section.previewMode"
+     ng-class="{ 'selected': section.selected,
+                 'isRequired': section.liveProperties.IsRequired,
+                 'pageBreakBefore': section.pageBreakBefore() }"
+     ng-style="{ 'display': section.setVisibilityInPreview() }">
+    <div class="block-tools" ng-if="!section.previewMode">
+        <div class="btn-group-vertical" role="group" aria-label="block tools">
+            <button class="btn btn-xs btn-link delete-btn" title="Delete section" id="deleteSection"
+                    ng-click="section.removeSection($event)">
+                <md-icon md-svg-src="actions:delete"></md-icon>
+            </button>
+            <button class="btn btn-xs btn-link config-btn" title="Section properties" id="SectionProperties"
+                    ng-click="section.updateSectionProperty($event)">
+                <md-icon md-svg-src="actions:settings"></md-icon>
+            </button>
+            <button class="btn btn-xs btn-link up-btn section-arrow-btn" title="Move up"
+                    ng-class="{'disabled':section.isTop}"
+                    ng-click="section.moveUpSection($event)"><span
+                    class="glyphicon glyphicon-arrow-up"></span></button>
+            <button class="btn btn-xs btn-link down-btn section-arrow-btn" title="Move down"
+                    ng-class="{'disabled':section.isBottom}"
+                    ng-click="section.moveDownSection($event)"><span
+                    class="glyphicon glyphicon-arrow-down"></span></button>
+        </div>
+    </div>
+    <div class="block-inner" ng-click="section.getCurrentSection($event)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="section-title">{{section.sectionData.Title}}</span>
+            </div>
+            <div class="panel-body"
+                 ng-class="{'invisible-section': !section.previewMode && !section.liveProperties.IsVisible}">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+    <section>
+        <div class="loginInformation">
+            <div>
+                <header>
+                    <h2>Login</h2>
+                    <div>
+                        <div ng-if="errors" class="alert alert-danger">
+                            <strong>Whoops!</strong>
+                            There were some problems with the request:
+                            <ul>
+                                <li ng-repeat="error in errors">{{error.message}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <form>
+                    <div>
+                        <input type="text"
+                               ng-model="username"
+                               class="form-control"
+                               id="username"
+                               name="username"
+                               placeholder="Username"
+                               value=""
+                               autofocus>
+                    </div>
+                    <div>
+                        <input type="password"
+                               ng-model="password"
+                               class="form-control"
+                               id="password"
+                               name="password"
+                               placeholder="Password">
+                    </div>
+                    <button type="button" class="btn" ng-click="logIn()" id="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

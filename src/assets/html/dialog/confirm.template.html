@@ -1,0 +1,32 @@
+<md-dialog aria-label="Confirm dialog" id="mdDialog" class="confirmDialog">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <!--<md-icon md-svg-icon="actions:announcement"></md-icon>-->
+            <md-icon md-svg-icon="alert:warning"></md-icon>
+            <h3>{{ context.title }}</h3>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()" aria-label="Close">
+                <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout="row" layout-align="center center">
+        <md-list>
+            <md-icon class="text-warning" md-svg-icon="alert:warning"></md-icon>
+            <h2 class="md-title">{{ context.desc }}</h2>
+            <p>
+                <span class="subContent">
+                    {{ context.subContent }}
+                </span>
+            </p>
+        </md-list>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="closeDialog()" ng-show="context.isNecessary" class="md-primary cancelBtn" name="Cancel">
+            {{ context.cancelBtnText }}
+        </md-button>
+        <md-button ng-click="confirm()" class="md-raised md-primary confirmBtn" id="ConfirmBtn" name="Confirm">
+            {{ context.confirmBtnText }}
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

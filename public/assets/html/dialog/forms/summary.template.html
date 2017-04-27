@@ -1,0 +1,50 @@
+<md-dialog aria-label="{{dialogTitle}}" class="dialogContainer" flex="50">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{dialogTitle}}</h2>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div layout="row" layout-align="space-around center" class="zero formSummaryDialog" id="form-summary-body">
+            <div flex="50" class="attributeColumn">
+                <h3 class="header">Attributes</h3>
+                <ul flex class="attribute-list" as-sortable="availableSortOptions" ng-model="attributes.Available">
+                    <li class="" ng-repeat="item in attributes.Available" as-sortable-item>
+                        <div class="item-title" as-sortable-item-handle layout="column">
+                            <span>{{ item.AttributeTitle }}</span>
+                        </div>
+                    </li>
+                    <div class="emptysummaryData" ng-if="attributes.Available && !attributes.Available.length"></br>No data available in attributes!</div>  
+                </ul>
+            </div>
+            <div flex="50" class="summaryColumn">
+                <h3 class="header">Form Summary</h3>
+                <ul flex class="attribute-list" as-sortable="currentSortOptions" ng-model="attributes.Current">
+                    <li class="" ng-repeat="item in attributes.Current" as-sortable-item data-no-drag="">
+                        <div class="row" as-sortable-item-handle layout="column">
+                            <div class="item-title"><span>{{ item.AttributeTitle }}</span>
+                                <a data-no-drag="" class="removeCard pull-right btn btn-xs"
+                                   ng-click="Remove($index, item)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="emptysummaryData" ng-if="attributes.Current && !attributes.Current.length"></br>No data available in form summary!</div>
+                </ul>
+            </div>
+        </div>
+
+    </md-dialog-content>
+    <md-dialog-actions class="propertyButton" layout="row">
+        <span flex></span>
+        <md-button class="" ng-click="Cancel()"
+                   style="margin-right: 20px;">
+            Cancel
+        </md-button>
+        <md-button class="md-primary md-raised"
+                   ng-click="Save()">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

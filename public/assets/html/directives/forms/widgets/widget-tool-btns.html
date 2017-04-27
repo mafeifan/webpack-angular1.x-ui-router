@@ -1,0 +1,22 @@
+<div class="block-tools"  ng-if="!grid.previewMode">
+  <div class="vertical-tools">
+    <button class="btn btn-link delete-btn" title="Remove widget" id="removeGrid"
+            ng-click="tool.remove($event)">
+      <md-icon md-svg-src="actions:delete"></md-icon>
+    </button>
+    <button class="btn btn-link config-btn" title="Widget properties" id="WidgetProperties"
+            ng-click="updateProperty($event)">
+      <md-icon md-svg-src="actions:settings"></md-icon>
+    </button>
+    <button class="btn btn-link up-btn" title="Move up" id="MoveUpGrid"
+            ng-class="{'disabled':grid.isTop}"
+            ng-click="moveUp($event)">
+      <span class="glyphicon glyphicon-arrow-up"></span>
+    </button>
+    <button class="btn btn-link down-btn" title="Move down"
+            ng-class="{'disabled':grid.isBottom}"
+            ng-click="moveDown($event)">
+      <span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+</div>

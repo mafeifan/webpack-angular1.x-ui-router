@@ -1,0 +1,43 @@
+<md-dialog aria-label="Form Set Property" class="dialogContainer" flex="30">
+    <form class="formsetPropertyDialog" ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Form Set Property</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div flex="grow" layout="column" layout-align="space-around stretch">
+                <div class="formGroup">
+                    <md-input-container class="md-block">
+                        <label>Form Set Title</label>
+                        <input name="title" required ng-model="formsetData.Title">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="space-between center">
+                    <h4 class="text-success">Applications</h4>
+                    <!-- <span class="titleHint">Select all applications associated with this form</span> -->
+                </div>
+                <div class="formGroup propertyField appList">
+                    <md-list-item ng-repeat="app in applicationsList">
+                        <md-checkbox class="applications[{{app.ApplicationId}}]"
+                                     id="applications[{{app.ApplicationId}}]"
+                                     ng-checked="exists(app.ApplicationId, formsetData.ApplicationIds)"
+                                     ng-click="toggle(app.ApplicationId, formsetData.ApplicationIds)">
+                        </md-checkbox>
+                        <p>{{app.Title}}</p>
+                    </md-list-item>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="formsetPropertyCancelBtn" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="save()" class="formsetPropertySaveBtn md-primary md-raised">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,60 @@
+<div ng-repeat="fieldType in fieldTypes">
+    <div ng-if="fieldType.FieldParameters != ''">
+        <div layout="row"
+             class="field form-group attributeField"
+             ng-repeat="p in fieldType.FieldParameters"
+             ng-show="fieldType.FieldTypeId == formData.FieldTypeId">
+            <div flex="100">
+                <div ng-switch="p.DataTypeId">
+
+                    <div ng-switch-when="1">
+                        <md-input-container>
+                            <label>{{ p.Title }}</label>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <md-radio-group ng-model="formData.originParameters[fieldType.FieldTypeId][p.FieldParameterId]" layout='row'>
+                                <md-radio-button value="1">True</md-radio-button>
+                                <md-radio-button value="0">False</md-radio-button>
+                            </md-radio-group>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container flex ng-switch-when="2">
+                        <label>{{ p.Title }}</label>
+                        <input type="number" ng-model="formData.originParameters[fieldType.FieldTypeId][p.FieldParameterId]" columns="1">
+                    </md-input-container>
+
+                    <md-input-container flex ng-switch-when="3">
+                        <label>{{ p.Title }}</label>
+                        <input type="text" ng-model="formData.originParameters[fieldType.FieldTypeId][p.FieldParameterId]" columns="1">
+                    </md-input-container>
+
+                    <!-- md-datepicker don't need md-input-container -->
+                    <div ng-switch-when="4">
+
+                        <!-- date -->
+                        <!-- md-datepicker don't need md-input-container -->
+                        <md-datepicker ng-if="fieldType.DataTypeId == 4 || fieldType.DataTypeId == 5" 
+                            ng-model="formData.originParameters[fieldType.FieldTypeId][p.FieldParameterId]" 
+                            md-placeholder="{{ p.Title }}"></md-datepicker>
+                        
+                        <!-- datetime -->
+                        <div ng-if="fieldType.DataTypeId == 6">
+                            <md-input-container flex-gt-md="30">
+                                <label>{{ p.Title }}</label>
+                                <input mdc-datetime-picker 
+                                       date="true" time="true" 
+                                       type="text" class="md-input"
+                                       placeholder="Date"
+                                       min-date="date"
+                                       md-placeholder="{{ p.Title }}"
+                                       ng-model="formData.originParameters[fieldType.FieldTypeId][p.FieldParameterId]">
+                            </md-input-container>
+                        </div>   
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

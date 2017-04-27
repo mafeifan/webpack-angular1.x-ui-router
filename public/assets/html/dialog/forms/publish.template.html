@@ -1,0 +1,57 @@
+<md-dialog aria-label="Form Properties" class="dialogContainer publishDialog">
+    <form class="formPublish" name="publishForm" ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Publish {{ formData.Title }}</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="publishDatePicker flex" layout="row" layout-align="space-around center">
+                <div class="publishDate flex-50 formGroup propertyField">
+                    <div class="helpIcon">
+                        <md-icon md-svg-src="actions:help_outline" class="infoIcon"></md-icon>
+                    </div>
+                    <span>Published</span>
+                    <md-content>
+                        <md-datepicker name="publishedOn" id="publishedOn"
+                                       ng-model="PublishedOn"
+                                       md-placeholder="Start date"
+                                       md-max-date="DeactivatedOn">
+                        </md-datepicker>
+                        <div class="validation-messages" ng-messages="publishForm.publishedOn.$error">
+                            <div ng-message="maxdate">Must be before DeactivatedOn.</div>
+                        </div>
+                    </md-content>
+                </div>
+                <div class="publishDate flex-50 formGroup propertyField">
+                    <div class="helpIcon">
+                        <md-icon md-svg-src="actions:help_outline" class="infoIcon"></md-icon>
+                    </div>
+                    <span>Expires</span>
+                    <md-content>
+                        <md-datepicker name="deactivatedOn" id="deactivatedOn"
+                                       ng-model="DeactivatedOn"
+                                       md-placeholder="End date"
+                                       md-min-date="PublishedOn">
+                        </md-datepicker>
+                        <div class="validation-messages" ng-messages="publishForm.deactivatedOn.$error">
+                            <div ng-message="mindate">Must be after PublishedOn.</div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="publishDialogCancelBtn" ng-click="Cancel()">
+                Cancel
+            </md-button>
+            <md-button class="publishDialogPublishBtn md-primary md-raised"
+                       ng-click="Save()"
+                       ng-disabled="!isFormValid()">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

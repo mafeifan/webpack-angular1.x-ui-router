@@ -1,5 +1,11 @@
-node_modules
-dist/
-build/
-.DS_store
-*.log
+.env
+.idea
+.DS_Store
+.settings/
+.buildpath
+.project
+
+/node_modules
+/dist
+
+npm-debug.log

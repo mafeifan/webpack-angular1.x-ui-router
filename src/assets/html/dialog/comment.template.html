@@ -1,0 +1,28 @@
+<md-dialog aria-label="Change Comment" class="change-comment-dialog">
+    <md-dialog-content style="margin: 20px;">
+        <md-list>
+            <button type="button" class="close" ng-click="CloseDialog()" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h2 class="md-title ng-binding">{{ Title }}</h2>
+            <div ng-show="hasError">
+                <p class="text-danger">Change Comment is required</p>
+            </div>
+            <div ng-if="fields.length > 0">
+                <p>The following fields have been modified:</p>
+                <md-list>
+                    <ul ng-repeat="field in fields">
+                        <li> {{ field }} </li>
+                    </ul>
+                </md-list>
+            </div>
+            <md-input-container class="md-block">
+                <label>Change Comment</label>
+                <textarea required name="comments" ng-model="ChangeComment"></textarea>
+            </md-input-container>
+        </md-list>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="Save(option)" class="md-primary">OK</md-button>
+        <md-button ng-click="CloseDialog()" class="md-primary">Cancel</md-button>
+    </md-dialog-actions>
+</md-dialog>

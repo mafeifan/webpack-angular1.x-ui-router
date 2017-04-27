@@ -1,0 +1,33 @@
+<md-dialog aria-label="Duplicate Form dialog" id="mdDialog" class="dialogContainer">
+    <md-toolbar layout="row" ng-cloak>
+        <div class="md-toolbar-tools">
+            <md-icon class="duplicateIcon"
+                     md-svg-src="content:content_copy"></md-icon>
+            <h3> Duplicate <q>{{ Title }}</q></h3>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()" name="CloseBtn">
+                <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div flex="grow" layout="column" layout-align="space-around stretch">
+            <div class="formGroup">
+                <md-input-container class="md-block">
+                    <label>New Duplicate Form Title</label>
+                    <input name="Duplicate Title" required ng-model="FormsData.Title">
+                </md-input-container>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="closeDialog()" class="md-primary" id="duplicateCancelBtn" name="Cancel">
+            Cancel
+        </md-button>
+        <md-button ng-click="DuplicateForm( Id )" class="md-raised md-primary" id="duplicateSaveBtn" name="DuplicateForm">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

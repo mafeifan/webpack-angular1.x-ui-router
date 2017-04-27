@@ -1,0 +1,76 @@
+<md-dialog aria-label="Form Properties" class="dialogContainer" flex="60">
+    <form style="margin: 0 40px 0 40px;" name="targetData" ng-cloak>
+        <md-dialog-content>
+            <div>
+                <div class="targetTitle" style="color: #466B96">
+                    <h3>{{ dialogTitle }}</h3>
+                </div>
+            </div>
+            <md-list>
+                <md-list-item class="md-1-line md-long-text" ng-repeat="item in errors">
+                    <div class="md-list-item-text">
+                        <h4 flex="30">{{ item.field }}</h4>
+                        <span class="required"><p flex class="md-list-item-text">* {{ item.message }}</p></span>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <div class="dialogContentContainer">
+                <div class="" style="" layout="row">
+                    <div class="flex formGroup propertyField">
+                        <div class="helpIcon">
+                            <a href="" title="">
+                                <md-icon md-svg-src="actions:help_outline" class="infoIcon"></md-icon>
+                            </a>
+                        </div>
+                        <md-input-container>
+                            <label>Title</label>
+                            <input id="title" ng-model="FormTargetData.Title" ng-readonly="isTargetOwner" name="targetTitle" md-maxlength="256" required>
+                            <div ng-messages="targetData.targetTitle.$error"
+                                 ng-show="error">
+                                <div ng-message="required">Required.</div>
+                                <div ng-message="md-maxlength">The title may not be greater than 256
+                                    characters.
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="flex formGroup propertyField">
+                    <div class="helpIcon">
+                        <a href="" title="">
+                            <md-icon md-svg-src="actions:help_outline" class="infoIcon"></md-icon>
+                        </a>
+                    </div>
+                    <md-input-container>
+                        <label>Description </label>
+                        <input id="description" ng-model="FormTargetData.Description" ng-readonly="isTargetOwner" name="targetDescription" md-maxlength="1024" required>
+                        <div ng-messages="targetData.targetDescription.$error"
+                             ng-show="error">
+                            <div ng-message="required">Required.</div>
+                            <div ng-message="md-maxlength">The description may not be greater than 1024
+                                characters.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="tableArea formGroup propertyField">
+
+                <match-tables is-target-owner="isTargetOwner" target-matches-data="FormTargetData.Matches" target-data="targetData">
+                </match-tables>
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions class="propertyButton" layout="row">
+            <span flex></span>
+            <md-button class="targetPropertyCancelBtn" ng-click="Cancel()" style="margin-right: 20px;">
+                Cancel
+            </md-button>
+            <md-button class="targetPropertySaveBtn md-primary md-raised"
+                       ng-show="!isTargetOwner"
+                       ng-click="saveProperty()">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,16 @@
+<html ng-app="demoApp">
+  <head>
+    <style>.active { color: red; font-weight: bold; }</style>
+    <link rel="stylesheet" href="./dist/vendor.css">
+
+  </head>
+
+  <body>
+    <a ui-sref="login" ui-sref-active="active">Login</a>
+    <a ui-sref="hello" ui-sref-active="active">Hello</a>
+    <a ui-sref="about" ui-sref-active="active">About</a>
+
+    <ui-view></ui-view>
+  </body>
+  <script src="dist/index.js"></script>
+</html>

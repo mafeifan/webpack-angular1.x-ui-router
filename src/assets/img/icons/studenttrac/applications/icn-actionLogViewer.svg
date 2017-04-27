@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 385 385" style="enable-background:new 0 0 385 385;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;fill:none;}
+	.st1{fill:#CECECE;}
+	.st2{fill:#FCFCD6;stroke:#5A6E5C;stroke-miterlimit:10;}
+	.st3{opacity:0.75;}
+	.st4{fill:#4E5693;}
+	.st5{opacity:0.75;fill:#4E5693;stroke:#4E5693;stroke-width:2.0407;stroke-miterlimit:10;enable-background:new    ;}
+	.st6{font-family:'Lato-Bold';}
+	.st7{font-size:68.9141px;}
+	.st8{fill:none;stroke:#5A6E5C;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<g>
+	<path class="st0" d="M303.4,50.5H80.9c-17.2,0-31.3,14.1-31.3,31.3v222.4c0,5,1.2,9.6,3.3,13.8L54,152.2l-1.9-72l2.4-0.1V74
+		l178.6,1.3l91-2.4l0.1,3.1h2.5v2.6l6.3,0.1l-0.7,237.6c1.6-3.7,2.5-7.8,2.5-12.1V81.8C334.7,64.6,320.6,50.5,303.4,50.5z"/>
+	<path class="st1" d="M326.6,78.7l-0.3,77l4.4,163.8c0.6-1,1.1-2,1.5-3.1L333,78.8L326.6,78.7z"/>
+	<path class="st1" d="M52.9,318c1.5,3,3.4,5.7,5.8,8.1L54,152.2L52.9,318z"/>
+	<polygon class="st1" points="233.1,75.4 54.5,74 54.4,80.2 	"/>
+	<polygon class="st1" points="326.3,155.7 326.6,78.7 326.6,76.1 324.2,76 	"/>
+	<path class="st2" d="M324.2,76l-0.1-3.1l-91,2.4L54.4,80.2H52l1.9,72l4.7,173.9c5.7,5.8,13.6,9.4,22.3,9.4h222.5
+		c11.7,0,21.9-6.5,27.3-16l-4.4-163.8L324.2,76z"/>
+</g>
+<g class="st3">
+	<rect x="121.1" y="193" class="st4" width="182.8" height="25"/>
+	<rect x="73.2" y="192.2" class="st4" width="34.4" height="25"/>
+</g>
+<g class="st3">
+	<rect x="121.1" y="238.5" class="st4" width="182.8" height="25"/>
+	<rect x="73.2" y="237.7" class="st4" width="34.4" height="25"/>
+</g>
+<g class="st3">
+	<rect x="121.1" y="284" class="st4" width="182.8" height="25"/>
+	<rect x="73.2" y="283.2" class="st4" width="34.4" height="25"/>
+</g>
+<text transform="matrix(1 0 0 1 73.217 160.7)" class="st5 st6 st7">Actions</text>
+<path id="square_9_" class="st8" d="M303.4,335.5H80.9c-17.2,0-31.3-14.1-31.3-31.3V81.8c0-17.2,14.1-31.3,31.3-31.3h222.5
+	c17.2,0,31.3,14.1,31.3,31.3v222.5C334.7,321.5,320.6,335.5,303.4,335.5z"/>
+</svg>

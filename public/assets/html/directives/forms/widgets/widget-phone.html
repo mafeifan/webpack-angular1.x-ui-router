@@ -1,0 +1,39 @@
+<div class="block-item grid-block"
+     ng-style="{ 'display': widget.setVisibilityInPreview() }">
+    <div class="block-tools" ng-if="!widget.previewMode && !widget.hideTools">
+        <form-element-tools
+                preview-mode="widget.previewMode"
+                parent-element="widget.$element"
+                property-data="widget.data"
+                properties-dialog-title="Phone"
+                remove-dialog-title="Phone"
+                on-update-property="widget.updateProperty"
+                on-remove="widget.remove"
+                on-move-up="widget.moveUp"
+                on-move-down="widget.moveDown"
+        ></form-element-tools>
+    </div>
+    <form name="phoneWidgetForm" class="main">
+        <div id="mainList" flex>
+            <div class="mainTable" flex>
+                <table class="table table-striped table-bordered datatable table-hover"
+                       datatables-inline-editor="datatablesInlineEditor"
+                       on-item-added="widget.onPhoneAdded()"
+                       on-item-removed="widget.onPhoneRemoved()"
+                       on-item-updated="widget.onPhoneUpdated()"
+                ></table>
+            </div>
+            <div flex>
+                <div class="addBtn">
+                    <md-button class="md-button addPhone"
+                               value="Add Phone"
+                               ng-click="datatablesInlineEditor.addItem()"
+                               ng-disabled="datatablesInlineEditor.adding || datatablesInlineEditor.isBtnDisabled">
+                        <md-icon class="addIcon" md-svg-src="content:add_circle"></md-icon>
+                        Add Phone
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

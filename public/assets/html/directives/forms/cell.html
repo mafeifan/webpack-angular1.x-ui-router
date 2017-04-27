@@ -1,0 +1,53 @@
+<td flex class="cell-block"
+    attribute-id="{{ cell.cellData.AttributeId }}"
+    layout-id="{{ cell.cellData.LayoutId }}"
+    ng-class="{ 'selected': cell.selected,
+                'required': cell.liveProperties.IsRequired,
+                'isReadonly': cell.setAttrReadonly(cell.liveProperties.IsReadOnly),
+                'isVisible': cell.liveProperties.IsVisible,
+                'isDisabled': cell.setAttrDisabled(!cell.liveProperties.IsEnabled) }"
+    ng-click="cell.selectCell($event)"
+    ng-style="{ 'width': cell.getWidth() + '%',
+                'outline': cell.previewMode ? 'none' : '' }"
+    rowspan="{{cell.RowSpan}}">
+    <div class="cellVerticalTools" ng-if="!cell.previewMode">
+        <button class="btn-link config-btn cell-tool" title="Cell properties"
+                ng-click="cell.updateProperty($event)">
+            <md-icon md-svg-src="actions:settings"></md-icon>
+        </button>
+        <button class="btn-link cell-tool removeAttr"
+                aria-label="Remove Attribute"
+                title="Remove Attribute"
+                ng-if="cell.cellData.AttributeId"
+                ng-click="cell.removeAttr($event)">
+            <md-icon class="removeAttrBtn"
+                     md-svg-src="navigation:close">
+            </md-icon>
+        </button>
+        <div class="rowspan-tools">
+            <button class="btn-link decrease-row-span-btn cell-tool" title="Decrease row span"
+                    ng-click="cell.rowSpanDecrease($event)">
+                <md-icon md-svg-src="navigation:expand_less"></md-icon>
+            </button>
+            <button class="btn-link increase-row-span-btn cell-tool" title="Increase row span"
+                    ng-click="cell.rowSpanIncrease($event)">
+                <md-icon md-svg-src="navigation:expand_more"></md-icon>
+            </button>
+        </div>
+    </div>
+    <div class="cell-inner">
+        <div class="attrField" ng-if="cell.cellData.AttributeId">
+            <magic-field
+                    is-disabled="!cell.liveProperties.IsEnabled"
+                    read-only="cell.liveProperties.IsReadOnly"
+                    ng-model="cell.cellData.AttributeDefaultValue"
+                    attribute-id="cell.cellData.AttributeId"
+                    field-type-id="cell.cellData.AttributeFieldTypeId"
+                    field-title="cell.cellData.AttributeTitle"
+                    field-hint-text="cell.cellData.AttributeHintText"
+                    field-parameters="cell.cellData.AttributeFieldParameters"
+                    options="cell.cellData.AttributeOptions">
+            </magic-field>
+        </div>
+    </div>
+</td>
