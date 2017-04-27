@@ -4,14 +4,13 @@ require('shelljs/global');
 
 var notifier = require('node-notifier');
 
-// dev 不用生成source-map
 //webpackConfig.devtool = 'source-map';
  
 webpackConfig.output.pathinfo = true;
 
 rm('-rf',  webpackConfig.output.path);
 mkdir('-p',  webpackConfig.output.path);
-cp('-rf', 'src/assets', webpackConfig.output.path);
+// cp('-rf', 'src/assets', webpackConfig.output.path);
 
 var compiler = webpack(webpackConfig);
 
