@@ -9,30 +9,30 @@ module.exports = angular => {
                 "": ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                     let deferred = $q.defer();
                     require.ensure([], function () {
-                        let module = require('components/login/loginModule.js')(angular);
+                        let loginModule = require('components/login/loginModule.js')(angular);
                         $ocLazyLoad.load({
                             name: 'loginModule'
                         });
-                        deferred.resolve(module);
+                        deferred.resolve(loginModule);
                     });
                     return deferred.promise;
                 }]
             },
         },
         {
-            name: 'hello',
-            url: '/hello',
-            template: require('views/hello.html'),
-            controller: 'helloController',
+            name: 'dashboard',
+            url: '/dashboard',
+            template: require('views/dashboard.html'),
+            controller: 'dashboardController',
             resolve: {
                 "": ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                     let deferred = $q.defer();
                     require.ensure([], function () {
-                        let module = require('components/hello/helloModule.js')(angular);
+                        let dashboardModule = require('components/dashboard/dashboardModule.js')(angular);
                         $ocLazyLoad.load({
-                            name: 'helloModule'
+                            name: 'dashboardModule'
                         });
-                        deferred.resolve(module);
+                        deferred.resolve(dashboardModule);
                     });
                     return deferred.promise;
                 }]

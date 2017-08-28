@@ -1,6 +1,6 @@
 module.exports = (ngModule) => {
-    ngModule.factory('ApiRequest', ['$http', 'ErrorService', '$q', '$timeout',
-        function ($http, ErrorService, $q, $timeout) {
+    ngModule.factory('ApiRequest', ['$http', '$q', '$timeout',
+        function ($http, $q, $timeout) {
 
             return {
                 loginUser: loginUser,
@@ -12,7 +12,7 @@ module.exports = (ngModule) => {
             };
 
             function handleError(e) {
-                return $q.reject(ErrorService.errorCallback(e.data, e.status));
+                return $q.reject(e);
             }
 
             function handleSuccess(response) {
@@ -21,7 +21,7 @@ module.exports = (ngModule) => {
 
             function loginUser(url, body) {
                 deferred = $q.defer();
-                // fake result
+                // mock result
                 let res = angular.merge(body, {
                     state: 200
                 });
@@ -30,15 +30,6 @@ module.exports = (ngModule) => {
                 }, 1000);
                 return deferred.promise;
             }
-
-            // return $http({
-            //     method: 'put',
-            //     url: getUrl(),
-            //     headers: {
-            //         'SessionToken': "570EF557-9F05-4DD6-89BE-4F0010070340"
-            //     },
-            //     data: body
-            // });
 
             function get(url, action) {
                 return request = $http({

@@ -3,9 +3,6 @@ module.exports = (ngModule) => {
 		return {
 			forgotPassword,
 			forgotUsername,
-			test: function() {
-				console.log("~~");
-			}
 		};
 
 		function forgotPassword(data) {

@@ -1,20 +1,16 @@
 module.exports = ngModule => {
-    ngModule.factory('httpInterceptorService', ['$q', '$location', 'localStorageService',
-		function ($q, $location, localStorageService) {
+    ngModule.factory('httpInterceptorService', ['$q',
+		function ($q) {
 			return  {
-                request:  _request
+                request:  function() {
+					config.headers = config.headers || {};
+					if (authData) {
+						config.headers['AuthenticationToken'] = 'your_token_from_server';
+					}
+
+					return config;	
+                }
 			};
-
-			function _request(config) {
-				config.headers = config.headers || {};
-                let authData = localStorageService.get('userInfo');
-				if (authData) {
-					config.headers['AuthenticationToken'] = authData.AuthenticationToken;
-					config.headers['SessionToken'] = authData.SessionToken;
-				}
-
-				return config;
-			}
 		}
 	]);
 };

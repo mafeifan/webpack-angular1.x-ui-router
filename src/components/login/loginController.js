@@ -1,14 +1,16 @@
 module.exports = loginModule => {
     loginModule.controller('loginController',
-        function ($scope, ApiRequest, $state, $stateParams, localStorageService) {
+        function ($scope, $state, $stateParams, ApiRequest) {
             $scope.logIn = function () {
-                ApiRequest.loginUser('/api/single-page-login', {
+                ApiRequest.loginUser('/api/login', {
                     username: $scope.username,
                     password: $scope.password
-                }).then( data=> {
-                    localStorageService.set('userInfo', data);
-                    $state.go('hello');
-                }).catch(res => console.log(res));
+                }).then( data => {
+                    localStorage.setItem('name', $scope.username)
+                    $state.go('dashboard');
+                }).catch(
+                    res => console.log(res)
+                );
             };
         });
 }
