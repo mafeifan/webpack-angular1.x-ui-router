@@ -37,7 +37,6 @@ const ngModule = angular.module('demoApp', ngDepModules);
 // load core service
 // add AuthenticationToken and SessionToken to header for each request
 require('./components/common/httpInterceptorService')(ngModule);
-require('./components/common/DialogService')(ngModule);
 require('./components/common/ErrorService')(ngModule);
 require('./components/common/apiRequest')(ngModule);
 
@@ -59,7 +58,7 @@ ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLo
     });
 
     $urlRouterProvider.otherwise(function ($injector, $location) {
-      $injector.get('$state').go('dashboard');
+      $injector.get('$state').go('login');
     });
   }
 ]);
@@ -69,10 +68,9 @@ ngModule.run(function ($rootScope, $state, $location) {
 
     if (!$rootScope.isAuthenticated) {
       // event.preventDefault();
-      return;
+      //return;
       event.preventDefault();
-
-
+      $state.go('login');
       // event.preventDefault();
       //
       //$location.url('/login');
@@ -80,7 +78,7 @@ ngModule.run(function ($rootScope, $state, $location) {
       //event.preventDefault();
     }
 
-    $state.go('login');
+    //$state.go('login');
 
     // console.log('$stateChangeStart');
     // console.log('fromState:' + fromState.name);

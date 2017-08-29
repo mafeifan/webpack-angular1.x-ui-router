@@ -52,11 +52,11 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-angular-animate@^1.6.3:
+angular-animate@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.6.tgz#6925647b141a040d241bf125040f1a150fcd8a70"
 
-angular-aria@^1.6.3:
+angular-aria@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.6.tgz#58dd748e09564bc8409f739bde57b35fbee5b6a5"
 
@@ -64,11 +64,11 @@ angular-loading-bar@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/angular-loading-bar/-/angular-loading-bar-0.9.0.tgz#37ef52c25f102c216e7b3cdfd2fc5a5df9628e45"
 
-angular-messages@^1.6.3:
+angular-messages@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.6.tgz#a9bb3fc5f971d745cd3a3bdbaabc6f1f4deb13f3"
 
-angular-sanitize@^1.6.3:
+angular-sanitize@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.6.6.tgz#0fd065a19931517fbece66596d325d72b6e06041"
 
@@ -78,7 +78,7 @@ angular-ui-router@^0.4.2:
   dependencies:
     angular "^1.0.8"
 
-angular@^1.0.8, angular@^1.6.3:
+angular@^1.0.8, angular@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
 
@@ -1790,7 +1790,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-jquery@^3.1.1:
+jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
