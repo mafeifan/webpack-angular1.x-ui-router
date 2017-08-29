@@ -34,15 +34,31 @@ loadBasicModules();
 // define one angular module
 const ngModule = angular.module('demoApp', ngDepModules);
 
-// load core service
-// add AuthenticationToken and SessionToken to header for each request
+// 加载核心service
+
+// 拦截器
 require('./components/common/httpInterceptorService')(ngModule);
+// 错误处理
 require('./components/common/ErrorService')(ngModule);
+// 权限相关
+require('./components/common/IdentityService')(ngModule);
+// 登录处理
+require('./components/common/AuthService')(ngModule);
+// $http简单封装
 require('./components/common/apiRequest')(ngModule);
+
+// 工具类库
+const LocalStore = require('./utils/LocalStore');
+
+const DB = new LocalStore('__demoDB__');
+DB.set('name', 'finley');
+console.log(DB.get('name'));
 
 ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider', '$ocLazyLoadProvider',
   function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $ocLazyLoadProvider) {
     $httpProvider.interceptors.push('httpInterceptorService');
+
+    //
     cfpLoadingBarProvider.includeBar = false;
 
     $ocLazyLoadProvider.config({
@@ -63,32 +79,34 @@ ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLo
   }
 ]);
 
-ngModule.run(function ($rootScope, $state, $location) {
+ngModule.run(function ($rootScope, $state, AuthService, IdentityService) {
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
-    if (!$rootScope.isAuthenticated) {
-      // event.preventDefault();
-      //return;
-      event.preventDefault();
-      $state.go('login');
-      // event.preventDefault();
-      //
-      //$location.url('/login');
-      //$state.transitionTo('login');
-      //event.preventDefault();
+    $rootScope.toState = toState;
+    $rootScope.toStateParams = toParams;
+
+    if (IdentityService.isIdentityResolved()) {
+      AuthService.authorize();
     }
 
-    //$state.go('login');
+    const noNeedAuthStates = ['login', 'reset-password', 'register'];
 
-    // console.log('$stateChangeStart');
-    // console.log('fromState:' + fromState.name);
-    // console.log('toState:' + toState.name);
+    if (! noNeedAuthStates.includes(toState.name) && !localStorage.getItem('userInfo')) {
+      event.preventDefault();
+      $state.go('login');
+    }
+
+    console.group('$stateChangeStart');
+    console.log('fromState:' + fromState.name);
+    console.log('toState:' + toState.name);
+    console.groupEnd('$stateChangeStart');
   });
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-    console.log('$stateChangeSuccess');
+    console.group('$stateChangeSuccess');
     console.log('fromState:' + fromState.name);
     console.log('toState:' + toState.name);
+    console.groupEnd('$stateChangeSuccess');
   });
 
   // $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
