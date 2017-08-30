@@ -26,6 +26,13 @@ function loadBasicModules () {
   require('angular-loading-bar/src/loading-bar.css');
   ngDepModules.push('angular-loading-bar');
 
+  require('datatables.net');
+  require('datatables.net-dt/css/jquery.dataTables.css');
+
+  require('angular-datatables');
+  require('angular-datatables/dist/css/angular-datatables.css');
+  ngDepModules.push('datatables');
+
   require('bootstrap/dist/css/bootstrap.css');
 }
 
@@ -34,7 +41,7 @@ loadBasicModules();
 // define one angular module
 const ngModule = angular.module('demoApp', ngDepModules);
 
-// 加载核心service
+/** 加载核心service **/
 
 // 拦截器
 require('./components/common/httpInterceptorService')(ngModule);
@@ -47,18 +54,22 @@ require('./components/common/AuthService')(ngModule);
 // $http简单封装
 require('./components/common/apiRequest')(ngModule);
 
-// 工具类库
+/** 工具类库 **/
 const LocalStore = require('./utils/LocalStore');
 
 const DB = new LocalStore('__demoDB__');
 DB.set('name', 'finley');
 console.log(DB.get('name'));
 
-ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider', '$ocLazyLoadProvider',
-  function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $ocLazyLoadProvider) {
+ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
+  '$ocLazyLoadProvider', '$compileProvider',
+  function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider,
+            $ocLazyLoadProvider, $compileProvider) {
     $httpProvider.interceptors.push('httpInterceptorService');
 
-    //
+    // https://stackoverflow.com/questions/41116962/directives-passing-parameter-undefined-while-updating-1-5-x-to-1-6-angular/41117676#41117676
+    $compileProvider.preAssignBindingsEnabled(true);
+
     cfpLoadingBarProvider.includeBar = false;
 
     $ocLazyLoadProvider.config({
