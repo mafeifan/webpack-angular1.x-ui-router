@@ -1,6 +1,6 @@
 module.exports = ngModule => {
-  ngModule.factory('httpInterceptorService', ['$q',
-    function ($q) {
+  ngModule.factory('httpInterceptorService', [
+    function () {
       return {
         request: function (config) {
           config.headers = config.headers || {};

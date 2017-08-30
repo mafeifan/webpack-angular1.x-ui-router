@@ -1,5 +1,5 @@
 module.exports = angular => {
-    const loginModule = angular.module('loginModule', []);
-    require('./loginController')(loginModule);
-    require('../common/IdentityService')(loginModule);
+  const loginModule = angular.module('loginModule', []);
+  require('./loginController')(loginModule);
+  require('../common/IdentityService')(loginModule);
 }

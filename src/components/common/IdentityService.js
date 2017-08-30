@@ -46,7 +46,8 @@ module.exports = ngModule => {
             _identity = undefined;
           }
 
-          // check and see if we have retrieved the identity data from the server. if we have, reuse it by immediately resolving
+          // check and see if we have retrieved the identity data from the server. if we have, reuse it by immediately
+          // resolving
           if (angular.isDefined(_identity)) {
             deferred.resolve(_identity);
             return deferred.promise;
@@ -65,11 +66,12 @@ module.exports = ngModule => {
           //                            deferred.resolve(_identity);
           //                        });
 
-          // for the sake of the demo, we'll attempt to read the identity from localStorage. the example above might be a way if you use cookies or need to retrieve the latest identity from an api
+          // for the sake of the demo, we'll attempt to read the identity from localStorage. the example above might
+          // be a way if you use cookies or need to retrieve the latest identity from an api
           // i put it in a timeout to illustrate deferred resolution
           let self = this;
           $timeout(() => {
-            _identity = angular.fromJson(localStorage.getItem('demo.identity'));
+            _identity = angular.fromJson(localStorage.getItem('userInfo'));
             self.authenticate(_identity);
             deferred.resolve(_identity);
           }, 1000);
