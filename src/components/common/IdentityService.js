@@ -34,9 +34,11 @@ module.exports = ngModule => {
           // For you, it could be a cookie, sessionStorage, whatever
           if (identity) {
             localStorage.setItem('userInfo', angular.toJson(identity));
+            _DB.set('userInfo', identity);
           }
           else {
-            localStorage.removeItem('userInfo');
+            //localStorage.removeItem('userInfo');
+            _DB.set('userInfo', null);
           }
         },
         identity(force) {

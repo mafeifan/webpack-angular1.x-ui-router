@@ -27,6 +27,7 @@ module.exports = angular => {
     {
       name: 'dashboard',
       url: '/dashboard',
+      parent  : '',
       data: {
         roles: ['User']
       },
@@ -49,7 +50,13 @@ module.exports = angular => {
     {
       name: 'about',
       url: '/about',
-      template: '<h3>Its the UI-Router hello world app!</h3>'
+      parent: 'dashboard',
+      abstract: false,
+      views: {
+        'dashboard': {
+          template: '<h3>this is about page</h3>',
+        }
+      },
     },
   ];
 };

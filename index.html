@@ -2,15 +2,15 @@
   <head>
     <style>.active { color: red; font-weight: bold; }</style>
     <link rel="stylesheet" href="./dist/vendor.css">
-    <title>Demo</title>
+    <title>angular-ui-router-webpack</title>
   </head>
 
   <body>
-    <a ui-sref="login" ui-sref-active="active">Login</a>
-    <a ui-sref="dashboard" ui-sref-active="active">Dashboard</a>
-    <a ui-sref="about" ui-sref-active="active">About</a>
-
-    <ui-view></ui-view>
+    <div class="container">
+      <ui-view></ui-view>
+      <copy-right></copy-right>
+    </div>
   </body>
+
   <script src="dist/index.js"></script>
 </html>

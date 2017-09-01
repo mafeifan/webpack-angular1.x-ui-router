@@ -41,6 +41,11 @@ loadBasicModules();
 // define one angular module
 const ngModule = angular.module('demoApp', ngDepModules);
 
+/** 工具类库 **/
+const LocalStore = require('./utils/LocalStore');
+const _DB = new LocalStore('__demoDB__');
+window._DB = _DB;
+
 /** 加载核心service **/
 
 // 拦截器
@@ -52,14 +57,10 @@ require('./components/common/IdentityService')(ngModule);
 // 登录处理
 require('./components/common/AuthService')(ngModule);
 // $http简单封装
+// TODO 删除多余的代码
 require('./components/common/apiRequest')(ngModule);
 
-/** 工具类库 **/
-const LocalStore = require('./utils/LocalStore');
 
-const DB = new LocalStore('__demoDB__');
-DB.set('name', 'finley');
-console.log(DB.get('name'));
 
 ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
   '$ocLazyLoadProvider', '$compileProvider',
@@ -126,3 +127,7 @@ ngModule.run(function ($rootScope, $state, AuthService, IdentityService) {
   //   }
   // });
 });
+
+// load common directives
+// TODO use components
+require('./components/common/directive/demoDirective')(ngModule);

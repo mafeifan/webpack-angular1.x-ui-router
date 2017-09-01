@@ -1,3 +1,8 @@
+/**
+ * 一个对localStorage的简单封装
+ * @type {module.LocalDB}
+ */
+
 module.exports = class LocalDB {
   constructor(name) {
     this.LS = null
@@ -36,5 +41,11 @@ module.exports = class LocalDB {
       return this.data[uri]
     }
     return false
+  }
+
+  remove(uri) {
+    if (this.data[uri]) {
+      this.data[uri] = null
+    }
   }
 }
