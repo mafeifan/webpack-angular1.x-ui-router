@@ -33,12 +33,11 @@ module.exports = ngModule => {
           // for this demo, we'll store the identity in localStorage.
           // For you, it could be a cookie, sessionStorage, whatever
           if (identity) {
-            localStorage.setItem('userInfo', angular.toJson(identity));
-            _DB.set('userInfo', identity);
-          }
-          else {
-            //localStorage.removeItem('userInfo');
-            _DB.set('userInfo', null);
+            // localStorage.setItem('userInfo', angular.toJson(identity));
+            window._DB.set('userInfo', identity);
+          } else {
+            // localStorage.removeItem('userInfo');
+            window._DB.remove('userInfo');
           }
         },
         identity(force) {
@@ -73,7 +72,9 @@ module.exports = ngModule => {
           // i put it in a timeout to illustrate deferred resolution
           let self = this;
           $timeout(() => {
-            _identity = angular.fromJson(localStorage.getItem('userInfo'));
+            // _identity = angular.fromJson(localStorage.getItem('userInfo'));
+            _identity = window._DB.get('userInfo');
+            console.log(_identity)
             self.authenticate(_identity);
             deferred.resolve(_identity);
           }, 1000);

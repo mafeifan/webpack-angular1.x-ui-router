@@ -1,5 +1,8 @@
 /**
  * 一个对localStorage的简单封装
+ * const _DB = new LocalDB('__demoDB__');
+ * _DB.set('name', 'finley');
+ * _DB.remove('name');
  * @type {module.LocalDB}
  */
 
@@ -29,23 +32,26 @@ module.exports = class LocalDB {
     }
   }
 
-  set(uri, data) {
-    this.data[uri] = data
+  set(key, data) {
+    this.data[key] = data
     if (this.LS) {
       this.LS[this.name] = JSON.stringify(this.data)
     }
   }
 
-  get(uri) {
-    if (this.data[uri]) {
-      return this.data[uri]
+  get(key) {
+    if (this.data[key]) {
+      return this.data[key]
     }
-    return false
+    return null
   }
 
-  remove(uri) {
-    if (this.data[uri]) {
-      this.data[uri] = null
+  remove(key) {
+    if (this.data[key]) {
+      delete this.data[key]
+      if (this.LS) {
+        this.LS[this.name] = JSON.stringify(this.data)
+      }
     }
   }
 }

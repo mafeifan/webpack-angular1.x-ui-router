@@ -12,11 +12,11 @@
 
 ## TODO
 
- - 公用的js，合并压缩放到html中
- - views文件放到components中
- - 精简service
- - localStorage service
- - 用webpack server启动
+ - [x] 公用的js，合并压缩放到html中
+ - [x] views文件放到components中
+ - [x] 精简service
+ - [] localStorage service
+ - [x] 用webpack server启动
 
 ## Thanks
 

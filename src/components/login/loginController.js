@@ -10,8 +10,7 @@ module.exports = loginModule => {
 
         if ($scope.returnToState) {
           $state.go($scope.returnToState.name, $scope.returnToStateParams);
-        }
-        else {
+        } else {
           $state.go('dashboard');
         }
         //   .then(data => {

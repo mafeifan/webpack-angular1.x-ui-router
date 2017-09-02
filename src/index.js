@@ -33,6 +33,7 @@ function loadBasicModules () {
   require('angular-datatables/dist/css/angular-datatables.css');
   ngDepModules.push('datatables');
 
+  require('bootstrap');
   require('bootstrap/dist/css/bootstrap.css');
 }
 
@@ -41,12 +42,12 @@ loadBasicModules();
 // define one angular module
 const ngModule = angular.module('demoApp', ngDepModules);
 
-/** 工具类库 **/
+/* 工具类库 */
 const LocalStore = require('./utils/LocalStore');
 const _DB = new LocalStore('__demoDB__');
 window._DB = _DB;
 
-/** 加载核心service **/
+/* 加载核心service */
 
 // 拦截器
 require('./components/common/httpInterceptorService')(ngModule);
@@ -59,8 +60,6 @@ require('./components/common/AuthService')(ngModule);
 // $http简单封装
 // TODO 删除多余的代码
 require('./components/common/apiRequest')(ngModule);
-
-
 
 ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
   '$ocLazyLoadProvider', '$compileProvider',
@@ -103,7 +102,7 @@ ngModule.run(function ($rootScope, $state, AuthService, IdentityService) {
 
     const noNeedAuthStates = ['login', 'reset-password', 'register'];
 
-    if (! noNeedAuthStates.includes(toState.name) && !localStorage.getItem('userInfo')) {
+    if (!noNeedAuthStates.includes(toState.name) && !window._DB.get('userInfo')) {
       event.preventDefault();
       $state.go('login');
     }

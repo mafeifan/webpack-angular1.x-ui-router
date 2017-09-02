@@ -3,5 +3,10 @@ module.exports = dashboardModule => {
     function ($rootScope, $scope, ApiRequest, $state, $stateParams) {
       $rootScope.userInfo = _DB.get('userInfo');
       console.log($rootScope);
+
+      $scope.logout = function () {
+        localStorage.clear();
+        $state.go('login');
+      }
     });
 };

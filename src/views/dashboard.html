@@ -1,12 +1,20 @@
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="padding-left:100px">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="dashboard">Demo</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="login" ui-sref-active="active" ng-if="!userInfo">Login</a></li>
+        <li><a ui-sref="about" ui-sref-active="active">About</a></li>
+        <li><a ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
-
-  <header>
-    <a ui-sref="login" ui-sref-active="active" ng-if="!userInfo">Login</a>
-    <a ui-sref="dashboard" ui-sref-active="active" ng-if="!userInfo">Dashboard</a>
-    <a ui-sref="about" ui-sref-active="active">About</a>
-    <a ui-sref="logout" ui-sref-active="active">Logout</a>
-  </header>
-
   <section ui-view="dashboard">
     <div class="row">
       <div class="col-md-12">
@@ -44,8 +52,6 @@
       </table>
     </div>
   </section>
-
-
 </div>
 
 
