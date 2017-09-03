@@ -1,10 +1,10 @@
 module.exports = dashboardModule => {
   dashboardModule.controller('dashboardController',
-    function ($rootScope, $scope, $state, $stateParams) {
-      $rootScope.userInfo = _DB.get('userInfo');
+    function ($rootScope, $scope, $state) {
+      $rootScope.userInfo = window._DB.get('userInfo');
       console.log($rootScope);
 
-      $scope.logout = function () {
+      $scope.logout = () => {
         localStorage.clear();
         $state.go('login');
       }

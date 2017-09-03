@@ -1,7 +1,7 @@
 module.exports = ngModule => {
-  ngModule.factory('authService', AuthService);
-  AuthService.$inject = ['$rootScope', '$state', 'identityService'];
-  function AuthService($rootScope, $state, identityService) {
+  ngModule.factory('authService', authService);
+  authService.$inject = ['$rootScope', '$state', 'identityService'];
+  function authService($rootScope, $state, identityService) {
     return {
       authorize() {
         return identityService.identity()
@@ -26,5 +26,4 @@ module.exports = ngModule => {
       }
     };
   }
-
 };

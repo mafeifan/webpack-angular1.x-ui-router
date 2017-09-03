@@ -1,4 +1,6 @@
-let routeStates, angular, ngDepModules = [];
+let routeStates,
+  angular,
+  ngDepModules = [];
 
 require('jquery');
 angular = require('angular');
@@ -43,6 +45,7 @@ const ngModule = angular.module('demoApp', ngDepModules);
 
 /* 工具类库 */
 const LocalStore = require('./utils/LocalStore');
+
 const _DB = new LocalStore('__demoDB__');
 window._DB = _DB;
 
@@ -59,6 +62,9 @@ require('./components/common/authService')(ngModule);
 // $http简单封装
 require('./components/common/apiRequest')(ngModule);
 
+// load common directives
+require('./components/common/directive/demoDirective')(ngModule);
+
 ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
   '$ocLazyLoadProvider', '$compileProvider', ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider, $compileProvider) => {
     $httpProvider.interceptors.push('httpInterceptorService');
@@ -74,20 +80,24 @@ ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     });
 
     // router config
-    routeStates = require('router')(angular);
+    routeStates = require('./router')(angular);
 
     routeStates.forEach(state => {
       $stateProvider.state(state);
     });
 
-    $urlRouterProvider.otherwise(function ($injector, $location) {
-      $injector.get('$state').go('login');
+    $urlRouterProvider.otherwise($injector => {
+      if (window._DB.get('userInfo')) {
+        $injector.get('$state').go('dashboard');
+      } else {
+        $injector.get('$state').go('login');
+      }
     });
   }
 ]);
 
 ngModule.run(function ($rootScope, $state, authService, identityService) {
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+  $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState) => {
 
     $rootScope.toState = toState;
     $rootScope.toStateParams = toParams;
@@ -109,20 +119,11 @@ ngModule.run(function ($rootScope, $state, authService, identityService) {
     console.groupEnd('$stateChangeStart');
   });
 
-  $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+  $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState) => {
     console.group('$stateChangeSuccess');
     console.log('fromState:' + fromState.name);
     console.log('toState:' + toState.name);
     console.groupEnd('$stateChangeSuccess');
   });
-
-  // $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-  //   if (error.notAuthenticated) {
-  //       $state.go('login');
-  //   }
-  // });
 });
 
-// load common directives
-// TODO use components
-require('./components/common/directive/demoDirective')(ngModule);

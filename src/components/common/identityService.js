@@ -2,7 +2,8 @@ module.exports = ngModule => {
   // 身份验证处理
   ngModule.factory('identityService', ['$q', '$http', '$timeout',
     function ($q, $http, $timeout) {
-      let _identity, _authenticated = false;
+      let _identity,
+        _authenticated = false;
 
       return {
         isIdentityResolved() {
@@ -28,7 +29,7 @@ module.exports = ngModule => {
         },
         authenticate(identity) {
           _identity = identity;
-          _authenticated = identity != null;
+          _authenticated = identity !== null;
 
           // for this demo, we'll store the identity in localStorage.
           // For you, it could be a cookie, sessionStorage, whatever

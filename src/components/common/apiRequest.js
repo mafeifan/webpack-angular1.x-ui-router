@@ -1,7 +1,8 @@
+const baseUrl = require('../../config').api.baseUrl;
+
 module.exports = ngModule => {
   ngModule.factory('apiRequest', ['$http', '$q', '$timeout',
     ($http, $q, $timeout) => {
-      const baseUrl = '';
       return {
         loginUser,
         get,
