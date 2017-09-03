@@ -1,7 +1,7 @@
-module.exports = (ngModule) => {
-  ngModule.factory('ApiRequest', ['$http', '$q', '$timeout',
-    function ($http, $q, $timeout) {
-
+module.exports = ngModule => {
+  ngModule.factory('apiRequest', ['$http', '$q', '$timeout',
+    ($http, $q, $timeout) => {
+      const baseUrl = '';
       return {
         loginUser,
         get,
@@ -18,7 +18,7 @@ module.exports = (ngModule) => {
         return $q.resolve(response.data);
       }
 
-      function loginUser(url, body) {
+      function loginUser(body) {
         const deferred = $q.defer();
         // mock result
         const res = angular.merge(body, {
@@ -30,33 +30,33 @@ module.exports = (ngModule) => {
         return deferred.promise;
       }
 
-      function get(url, action) {
+      function get(action) {
         return $http({
           method: 'get',
-          url: url + action
+          url: baseUrl + action
         }).then(handleSuccess, handleError);
       }
 
-      function post(url, action, body) {
+      function post(action, body) {
         return $http({
           method: 'post',
-          url: url + action,
+          url: baseUrl + action,
           data: body
         }).then(handleSuccess, handleError);
       }
 
-      function put(url, action, body) {
+      function put(action, body) {
         return $http({
           method: 'put',
-          url: url + action,
+          url: baseUrl + action,
           data: body
         }).then(handleSuccess, handleError);
       }
 
-      function destroy(url, action) {
+      function destroy(action) {
         return $http({
           method: 'delete',
-          url: url + action
+          url: baseUrl + action
         }).then(handleSuccess, handleError);
       }
     }

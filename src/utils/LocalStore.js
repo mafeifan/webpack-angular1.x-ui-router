@@ -1,8 +1,10 @@
 /**
- * 一个对localStorage的简单封装
+ * 一个对localStorage的简单封装，提供set,get和remove方法
+ * 简单用法：
  * const _DB = new LocalDB('__demoDB__');
  * _DB.set('name', 'finley');
  * _DB.remove('name');
+ *
  * @type {module.LocalDB}
  */
 

@@ -1,6 +1,6 @@
 module.exports = ngModule => {
   // 身份验证处理
-  ngModule.factory('IdentityService', ['$q', '$http', '$timeout',
+  ngModule.factory('identityService', ['$q', '$http', '$timeout',
     function ($q, $http, $timeout) {
       let _identity, _authenticated = false;
 

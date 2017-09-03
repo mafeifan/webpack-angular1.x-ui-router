@@ -3,7 +3,7 @@ let routeStates, angular, ngDepModules = [];
 require('jquery');
 angular = require('angular');
 
-function loadBasicModules () {
+function loadBasicModules() {
   require('oclazyload');
   ngDepModules.push('oc.lazyLoad');
 
@@ -22,9 +22,9 @@ function loadBasicModules () {
   require('angular-sanitize');
   ngDepModules.push('ngSanitize');
 
-  require('angular-loading-bar');
-  require('angular-loading-bar/src/loading-bar.css');
-  ngDepModules.push('angular-loading-bar');
+  // require('angular-loading-bar');
+  // require('angular-loading-bar/src/loading-bar.css');
+  // ngDepModules.push('angular-loading-bar');
 
   require('datatables.net');
   require('datatables.net-dt/css/jquery.dataTables.css');
@@ -33,7 +33,6 @@ function loadBasicModules () {
   require('angular-datatables/dist/css/angular-datatables.css');
   ngDepModules.push('datatables');
 
-  require('bootstrap');
   require('bootstrap/dist/css/bootstrap.css');
 }
 
@@ -52,25 +51,22 @@ window._DB = _DB;
 // 拦截器
 require('./components/common/httpInterceptorService')(ngModule);
 // 错误处理
-require('./components/common/ErrorService')(ngModule);
+// require('./components/common/errorService')(ngModule);
 // 权限相关
-require('./components/common/IdentityService')(ngModule);
+require('./components/common/identityService')(ngModule);
 // 登录处理
-require('./components/common/AuthService')(ngModule);
+require('./components/common/authService')(ngModule);
 // $http简单封装
-// TODO 删除多余的代码
 require('./components/common/apiRequest')(ngModule);
 
-ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
-  '$ocLazyLoadProvider', '$compileProvider',
-  function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider,
-            $ocLazyLoadProvider, $compileProvider) {
+ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+  '$ocLazyLoadProvider', '$compileProvider', ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider, $compileProvider) => {
     $httpProvider.interceptors.push('httpInterceptorService');
 
     // https://stackoverflow.com/questions/41116962/directives-passing-parameter-undefined-while-updating-1-5-x-to-1-6-angular/41117676#41117676
     $compileProvider.preAssignBindingsEnabled(true);
 
-    cfpLoadingBarProvider.includeBar = false;
+    // cfpLoadingBarProvider.includeBar = true;
 
     $ocLazyLoadProvider.config({
       debug: true,
@@ -90,14 +86,14 @@ ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLo
   }
 ]);
 
-ngModule.run(function ($rootScope, $state, AuthService, IdentityService) {
+ngModule.run(function ($rootScope, $state, authService, identityService) {
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
     $rootScope.toState = toState;
     $rootScope.toStateParams = toParams;
 
-    if (IdentityService.isIdentityResolved()) {
-      AuthService.authorize();
+    if (identityService.isIdentityResolved()) {
+      authService.authorize();
     }
 
     const noNeedAuthStates = ['login', 'reset-password', 'register'];
