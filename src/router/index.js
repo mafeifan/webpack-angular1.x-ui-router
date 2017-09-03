@@ -29,7 +29,7 @@ module.exports = angular => {
       url: '/dashboard',
       parent: '',
       data: {
-        roles: ['User']
+        roles: ['user']
       },
       template: require('views/dashboard.html'),
       controller: 'dashboardController',

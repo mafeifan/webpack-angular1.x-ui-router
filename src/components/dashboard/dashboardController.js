@@ -1,8 +1,11 @@
 module.exports = dashboardModule => {
   dashboardModule.controller('dashboardController',
-    function ($rootScope, $scope, $state) {
+    function ($rootScope, $scope, $state, apiRequest) {
       $rootScope.userInfo = window._DB.get('userInfo');
-      console.log($rootScope);
+      apiRequest.get('list')
+        .then(res => {
+          $scope.list = res.data
+        });
 
       $scope.logout = () => {
         localStorage.clear();

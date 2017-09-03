@@ -75,7 +75,6 @@ module.exports = ngModule => {
           $timeout(() => {
             // _identity = angular.fromJson(localStorage.getItem('userInfo'));
             _identity = window._DB.get('userInfo');
-            console.log(_identity)
             self.authenticate(_identity);
             deferred.resolve(_identity);
           }, 1000);

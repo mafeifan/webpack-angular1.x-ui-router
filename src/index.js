@@ -28,13 +28,6 @@ function loadBasicModules() {
   // require('angular-loading-bar/src/loading-bar.css');
   // ngDepModules.push('angular-loading-bar');
 
-  require('datatables.net');
-  require('datatables.net-dt/css/jquery.dataTables.css');
-
-  require('angular-datatables');
-  require('angular-datatables/dist/css/angular-datatables.css');
-  ngDepModules.push('datatables');
-
   require('bootstrap/dist/css/bootstrap.css');
 }
 
