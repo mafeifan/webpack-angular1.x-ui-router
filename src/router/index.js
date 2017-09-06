@@ -34,17 +34,23 @@ module.exports = angular => {
       template: require('views/dashboard.html'),
       controller: 'dashboardController',
       resolve: {
-        '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-          let deferred = $q.defer();
-          require.ensure([], function () {
-            let dashboardModule = require('components/dashboard/dashboardModule.js')(angular);
-            $ocLazyLoad.load({
-              name: 'dashboardModule'
-            });
-            deferred.resolve(dashboardModule);
-          });
-          return deferred.promise;
-        }]
+        // '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+        //   let deferred = $q.defer();
+        //   require.ensure([], function () {
+        //     let dashboardModule = require('components/dashboard/dashboardModule.js')(angular);
+        //     $ocLazyLoad.load({
+        //       name: 'dashboardModule'
+        //     });
+        //     deferred.resolve(dashboardModule);
+        //   });
+        //   return deferred.promise;
+        // }]
+        '': function () {
+          import(/* webpackChunkName: "dashboardController" */ 'components/dashboard/dashboardController')
+            .then(module => {
+              angular.controller('dashboardController', module.default);
+            })
+        }
       },
     },
     {

@@ -21,7 +21,7 @@ module.exports = {
     // where to load chunk file
     publicPath: '/dist/',
     filename: '[name].js',
-    chunkFilename: '[id].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.js'],
@@ -39,7 +39,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
       },
       {
         test: /\.css$/,
