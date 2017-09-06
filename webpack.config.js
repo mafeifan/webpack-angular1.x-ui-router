@@ -1,9 +1,6 @@
 const path = require('path');
-
-// const webpack = require('webpack');
-
+const webpack = require('webpack');
 const source = __dirname + '/src/';
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function assetsPath(_path) {
@@ -11,10 +8,10 @@ function assetsPath(_path) {
 }
 
 module.exports = {
-  // TODO vendor.js
   // TODO hash plugin
   entry: {
     index: './src/index.js',
+    vendor: ['jquery', 'angular', 'oclazyload', 'angular-messages', 'angular-sanitize'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -89,5 +86,8 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('vendor.css'),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
+    }),
   ]
 };

@@ -18,9 +18,6 @@ function loadBasicModules() {
   require('angular-messages');
   ngDepModules.push('ngMessages');
 
-  require('angular-animate');
-  ngDepModules.push('ngAnimate');
-
   require('angular-sanitize');
   ngDepModules.push('ngSanitize');
 
