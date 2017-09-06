@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const source = __dirname + '/src/';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -11,14 +12,13 @@ module.exports = {
   // TODO hash plugin
   entry: {
     index: './src/index.js',
-    vendor: ['jquery', 'angular', 'oclazyload', 'angular-messages', 'angular-sanitize'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     // where to load chunk file
-    publicPath: '/dist/',
-    filename: '[name].js',
-    chunkFilename: '[id].[chunkhash].js',
+    // publicPath: '/dist/',
+    filename: '[name].[hash:5].js',
+    chunkFilename: '[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.js'],
@@ -89,5 +89,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor']
     }),
+    new HtmlWebpackPlugin({
+      title: 'angular-ui-router-webpack',
+      template: 'src/index.template.html'
+    })
   ]
 };

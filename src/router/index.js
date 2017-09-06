@@ -9,7 +9,7 @@ module.exports = angular => {
       name: 'login',
       url: '/login',
       // template: require('views/login.html'),
-      templateUrl: 'views/login.html',
+      templateUrl: '../views/login.html',
       controller: 'loginController',
       resolve: {
         '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
@@ -33,7 +33,7 @@ module.exports = angular => {
         roles: ['user']
       },
       // template: require('views/dashboard.html'),
-      templateUrl: 'views/dashboard.html',
+      templateUrl: '../views/dashboard.html',
       controller: 'dashboardController',
       resolve: {
         '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
