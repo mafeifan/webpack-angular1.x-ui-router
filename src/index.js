@@ -21,9 +21,9 @@ function loadBasicModules() {
   require('angular-sanitize');
   ngDepModules.push('ngSanitize');
 
-  // require('angular-loading-bar');
-  // require('angular-loading-bar/src/loading-bar.css');
-  // ngDepModules.push('angular-loading-bar');
+  require('angular-loading-bar');
+  require('angular-loading-bar/src/loading-bar.css');
+  ngDepModules.push('angular-loading-bar');
 
   require('bootstrap/dist/css/bootstrap.css');
 }
@@ -56,13 +56,14 @@ require('./components/common/apiRequest')(ngModule);
 require('./components/common/directive/demoDirective')(ngModule);
 
 ngModule.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-  '$ocLazyLoadProvider', '$compileProvider', ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider, $compileProvider) => {
+  '$ocLazyLoadProvider', '$compileProvider', 'cfpLoadingBarProvider',
+  ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider, $compileProvider, cfpLoadingBarProvider) => {
     $httpProvider.interceptors.push('httpInterceptorService');
 
     // https://stackoverflow.com/questions/41116962/directives-passing-parameter-undefined-while-updating-1-5-x-to-1-6-angular/41117676#41117676
     $compileProvider.preAssignBindingsEnabled(true);
 
-    // cfpLoadingBarProvider.includeBar = true;
+    cfpLoadingBarProvider.includeBar = true;
 
     $ocLazyLoadProvider.config({
       debug: true,
@@ -92,9 +93,9 @@ ngModule.run(function ($rootScope, $state, authService, identityService) {
     $rootScope.toState = toState;
     $rootScope.toStateParams = toParams;
 
-    if (identityService.isIdentityResolved()) {
-      authService.authorize();
-    }
+    // if (identityService.isIdentityResolved()) {
+    //   authService.authorize();
+    // }
 
     const noNeedAuthStates = ['login', 'reset-password', 'register'];
 
