@@ -1,12 +1,13 @@
 {
-  "name": "webpack-spa",
+  "name": "angular-webpack-spa",
   "version": "1.0.0",
-  "description": "hehe",
+  "description": "demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node build/dev.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "serve": "webpack-dev-server --open --config webpack.dev.conf.js"
   },
   "author": "Finley",
   "license": "ISC",

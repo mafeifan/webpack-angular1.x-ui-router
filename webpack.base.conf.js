@@ -31,6 +31,10 @@ module.exports = {
       views: source + 'views'
     }
   },
+  devServer: {
+    hot: true,
+    contentBase: './dist'
+  },
   module: {
     rules: [
       {
@@ -85,6 +89,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('vendor.css'),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor']

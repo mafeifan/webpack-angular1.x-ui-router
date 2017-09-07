@@ -1,23 +1,16 @@
-## Install
-
-* yarn
-
-    or use
+## 运行 How to run
 
 * npm install
+* npm run serve
 
-## How to run
 
-* npm run dev
-
-## TODO
-
- - [ ] 公用的js，合并压缩放到html中
- - [ ] 使用[easy-mock](https://github.com/easy-mock/easy-mock)提供的服务模拟数据
- - [ ] views文件放到各个components中
- - [ ] 精简service
- - [ ] 用webpack server启动
+ - [x] 使用webpack extract-text-webpack-plugin提取共用的JS类库文件
+ - [x] 使用webpack html-webpack-plugin生成html，模版文件在src/index.template.html
+ - [x] 使用webpack server，方便热加载
+ - [x] 使用[easy-mock](https://github.com/easy-mock/easy-mock)提供的服务模拟数据
  - [x] 封装localStorage
+ - [ ] 启用angular-loading-bar
+ - [ ] 修复登录问题
 
 ## Thanks
 

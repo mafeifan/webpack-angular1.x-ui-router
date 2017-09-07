@@ -1,18 +1,16 @@
 const webpack = require('webpack');
+const notifier = require('node-notifier');
 const webpackConfig = require('../webpack.config.js');
+const compiler = webpack(webpackConfig);
+
 require('shelljs/global');
 
-const notifier = require('node-notifier');
-
-// webpackConfig.devtool = 'source-map';
-
+webpackConfig.devtool = 'inline-source-map';
 webpackConfig.output.pathinfo = true;
-const compiler = webpack(webpackConfig);
 
 rm('-rf', webpackConfig.output.path);
 mkdir('-p', webpackConfig.output.path);
-cp('-rf', 'src/views', webpackConfig.output.path);
-
+// cp('-rf', 'src/views', webpackConfig.output.path);
 
 compiler.watch({ // watch options:
   aggregateTimeout: 300, // wait so long for more changes
