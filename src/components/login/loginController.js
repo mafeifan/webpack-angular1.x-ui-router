@@ -10,13 +10,14 @@ module.exports = loginModule => {
         apiRequest
           .put('login', loginInfo)
           .then(res => identityService
-            .authenticate(Object.assign({username: $scope.username}, res.data)));
-
-        if ($scope.returnToState) {
-          $state.go($scope.returnToState.name, $scope.returnToStateParams);
-        } else {
-          $state.go('dashboard');
-        }
+            .authenticate(Object.assign({username: $scope.username}, res.data)))
+          .then(() => {
+            if ($scope.returnToState) {
+              $state.go($scope.returnToState.name, $scope.returnToStateParams);
+            } else {
+              $state.go('dashboard');
+            }
+          });
       };
     });
 };

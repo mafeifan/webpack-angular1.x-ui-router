@@ -5,6 +5,7 @@
  * _DB.set('name', 'finley');
  * _DB.remove('name');
  *
+ * TODO data应该是私有
  * @type {module.LocalDB}
  */
 

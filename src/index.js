@@ -93,16 +93,16 @@ ngModule.run(function ($rootScope, $state, authService, identityService) {
     $rootScope.toState = toState;
     $rootScope.toStateParams = toParams;
 
-    // if (identityService.isIdentityResolved()) {
-    //   authService.authorize();
-    // }
-
-    const noNeedAuthStates = ['login', 'reset-password', 'register'];
-
-    if (!noNeedAuthStates.includes(toState.name) && !window._DB.get('userInfo')) {
-      event.preventDefault();
-      $state.go('login');
+    if (identityService.isIdentityResolved()) {
+      authService.authorize();
     }
+
+    // const noNeedAuthStates = ['reset-password', 'register'];
+    //
+    // if (!noNeedAuthStates.includes(toState.name) && !window._DB.get('userInfo')) {
+    //   event.preventDefault();
+    //   $state.go('login');
+    // }
 
     console.group('$stateChangeStart');
     console.log('fromState:' + fromState.name);

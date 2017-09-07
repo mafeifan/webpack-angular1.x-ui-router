@@ -6,6 +6,9 @@ module.exports = ngModule => {
         _authenticated = false;
 
       return {
+        logout() {
+          _identity = null;
+        },
         isIdentityResolved() {
           return angular.isDefined(_identity);
         },

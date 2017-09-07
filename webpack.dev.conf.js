@@ -31,6 +31,7 @@ module.exports = {
       views: source + 'views'
     }
   },
+  devtool: 'inline-source-map',
   devServer: {
     hot: true,
     contentBase: './dist'
