@@ -17,6 +17,7 @@ module.exports = angular => {
       resolve: {
         '': ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
           return $q(resolve => {
+            // https://webpack.js.org/api/module-methods/#require-ensure
             require.ensure([], () => {
               let loginModule = require('components/login/loginModule.js')(angular);
               $ocLazyLoad.load({
@@ -35,6 +36,7 @@ module.exports = angular => {
       data: {
         roles: ['user']
       },
+      // you can also use
       // template: require('views/dashboard.html'),
       templateUrl: '../views/dashboard.html',
       controller: 'dashboardController',
@@ -57,6 +59,9 @@ module.exports = angular => {
       url: '/about',
       parent: 'dashboard',
       abstract: false,
+      data: {
+        roles: ['user']
+      },
       views: {
         dashboard: {
           template: '<h3>this is about page</h3>',
