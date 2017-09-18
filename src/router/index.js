@@ -15,16 +15,16 @@ module.exports = angular => {
       // templateUrl: '../views/login.html',
       controller: 'loginController',
       resolve: {
-        '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-          let deferred = $q.defer();
-          require.ensure([], function () {
-            let loginModule = require('components/login/loginModule.js')(angular);
-            $ocLazyLoad.load({
-              name: 'loginModule'
+        '': ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+          return $q(resolve => {
+            require.ensure([], () => {
+              let loginModule = require('components/login/loginModule.js')(angular);
+              $ocLazyLoad.load({
+                name: 'loginModule'
+              });
+              resolve(loginModule);
             });
-            deferred.resolve(loginModule);
-          });
-          return deferred.promise;
+          })
         }]
       },
     },
@@ -39,16 +39,16 @@ module.exports = angular => {
       templateUrl: '../views/dashboard.html',
       controller: 'dashboardController',
       resolve: {
-        '': ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-          let deferred = $q.defer();
-          require.ensure([], function () {
-            let dashboardModule = require('components/dashboard/dashboardModule.js')(angular);
-            $ocLazyLoad.load({
-              name: 'dashboardModule'
+        '': ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+          return $q(resolve => {
+            require.ensure([], () => {
+              let dashboardModule = require('components/dashboard/dashboardModule.js')(angular);
+              $ocLazyLoad.load({
+                name: 'dashboardModule'
+              });
+              resolve(dashboardModule);
             });
-            deferred.resolve(dashboardModule);
-          });
-          return deferred.promise;
+          })
         }]
       },
     },

@@ -43,8 +43,6 @@ window._DB = _DB;
 
 // 拦截器
 require('./components/common/httpInterceptorService')(ngModule);
-// 错误处理
-// require('./components/common/errorService')(ngModule);
 // 权限相关
 require('./components/common/identityService')(ngModule);
 // 登录处理
