@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node build/dev.js",
+    "build": "node build/build.js",
     "serve": "webpack-dev-server --open --config webpack.dev.conf.js"
   },
   "author": "Finley",
@@ -30,7 +31,7 @@
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.0",
     "bundle-loader": "^0.5.5",
     "css-loader": "^0.27.3",
     "eslint": "4.5.0",
