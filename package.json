@@ -39,7 +39,7 @@
     "eslint-plugin-import": "2.7.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
-    "node-notifier": "^5.0.2",
+    "node-notifier": "^8.0.1",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.14.1",
     "url-loader": "^0.5.9",
